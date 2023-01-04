@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Cloud Media Carousel</title>
+    <script src="/js/slider.js"></script>
+    <link rel="stylesheet" href="/styles/slider.css" />
+  </head>
+  <body>
+    <main>
+      <section class="slider">
+        <div class="controls">
+          <button id="prev" onclick="previousMedia()">←</button>
+          <button id="next" onclick="nextMedia()">→</button>
+        </div>
+        <div class="text">
+          <div class="title">
+            <h4 id="title"></h4>
+          </div>
+        </div>
+        <video
+          height="100%"
+          width="100%"
+          id="video"
+          class="video"
+          controls
+          autoplay
+        ></video>
+        <audio
+          height="100%"
+          width="100%"
+          id="audio"
+          class="audio"
+          controls
+          autoplay
+        ></audio>
+      </section>
+    </main>
+  </body>
+</html>
