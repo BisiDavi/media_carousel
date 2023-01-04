@@ -1,10 +1,19 @@
 const GCS_URL = "https://storage.googleapis.com/video_carousel";
 let COUNT = 0;
-const audio = document.getElementById("audio");
+
+if (COUNT === 0) {
+  const audio = document.getElementById("audio");
+  audio.src = `${GCS_URL}/category_a/audios/audio_1.mp3`;
+}
 
 function navigateMedia() {
   const urlCount = COUNT % 5;
-  const mediaCount = urlCount === 0 ? 5 : urlCount;
+  const mediaCount =
+    urlCount === 0 && COUNT > 5
+      ? 5
+      : urlCount === 0 && COUNT < 5
+      ? 1
+      : urlCount;
   if (COUNT <= 5) {
     return {
       url: GCS_URL + `/category_a/audios/audio_${mediaCount}.mp3`,
