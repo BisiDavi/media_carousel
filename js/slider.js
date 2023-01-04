@@ -83,8 +83,6 @@ function assignMedia() {
 
 if (COUNT === 0) {
   COUNT = 1;
-  console.log("count", COUNT);
-  navigateMedia();
   assignMedia();
 }
 
