@@ -66,6 +66,10 @@ function assignMedia() {
   queryParams.searchParams.set("category", category);
   history.pushState(null, "", queryParams);
 
+  if (COUNT === 1) {
+    audio.play();
+  }
+
   if (type === "video") {
     document.getElementById("audio").classList.add("hide");
     document.getElementById("video").classList.remove("hide");
