@@ -1,44 +1,43 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Cloud Media Carousel</title>
     <link rel="stylesheet" href="/styles/slider.css" />
-    <script src="https://apis.google.com/js/api.js"></script>
-    
-  </head>
-  <body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bucket.config.js"></script>
+    <script type="text/javascript" src="js/bucket.js"></script>
+</head>
+<body>
     <main>
-      <section class="slider">
-        <div class="controls">
-          <button id="prev" onclick="previousMedia()">←</button>
-          <button id="next" onclick="nextMedia()">→</button>
-        </div>
-        <div class="text">
-          <div class="title">
-            <h4 id="title"></h4>
+        <section class="slider">
+          <div class="controls">
+            <button id="prev" onclick="previousMedia()">←</button>
+            <button id="next" onclick="nextMedia()">→</button>
           </div>
-        </div>
-        <video
-          height="100%"
-          width="100%"
-          id="video"
-          class="video"
-          controls
-          autoplay
-        ></video>
-        <audio
-          height="100%"
-          width="100%"
-          id="audio"
-          class="audio"
-          controls
-          autoplay
-        ></audio>
-      </section>
-    </main>
-    <!-- <script src="/js/slider.js"></script> -->
-    <!-- <script type="text/javascript" src="/js/carousel.js"></script> -->
-  </body>
-</html>
+          <div class="text">
+            <div class="title">
+              <h4 id="title"></h4>
+            </div>
+          </div>
+          <video
+            height="100%"
+            width="100%"
+            id="video"
+            class="video"
+            controls
+            autoplay
+          ></video>
+          <audio
+            height="100%"
+            width="100%"
+            id="audio"
+            class="audio"
+            controls
+            autoplay
+          ></audio>
+        </section>
+      </main>
+    </html>
+</body>
