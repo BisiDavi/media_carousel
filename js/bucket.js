@@ -35,7 +35,6 @@ function formatData(data) {
       bucket: item.bucket,
     });
   });
-  console.log("dataArray", dataArray);
   return dataArray;
 }
 
@@ -102,7 +101,6 @@ async function nextMedia() {
 }
 
 if (COUNT === 0) {
-  COUNT = 0;
   data.then((response) => {
     const result = formatData(response.items);
     const media = result[COUNT];
