@@ -59,8 +59,6 @@ function assignMedia() {
   const audio = document.getElementById("audio");
   const video = document.getElementById("video");
 
-  console.log("url", url);
-  console.log("count", COUNT);
   document.getElementById("title").innerHTML = title;
   let queryParams = new URL(location.href);
   queryParams.searchParams.set("category", category);
