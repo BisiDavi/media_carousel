@@ -96,6 +96,10 @@
   font-size: 30px;
 }
 
+.slider.audio #videoTitle {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .title {
     width: 65%;
@@ -109,10 +113,6 @@
 
   .slider.video #videoTitle {
     font-size: 20px;
-  }
-
-  .slider.audio #videoTitle {
-    display: none;
   }
 
   .controls {
