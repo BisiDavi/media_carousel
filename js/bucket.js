@@ -59,12 +59,18 @@ function assignMedia(media) {
   history.pushState(null, "", queryParams);
 
   if (type.includes("video")) {
+    document.getElementById("slider").classList.add("video");
+    document.getElementById("slider").classList.remove("audio");
     document.getElementById("audio").classList.add("hide");
     document.getElementById("video").classList.remove("hide");
+    document.getElementById("videoTitle").innerHTML = name;
+
     video.src = url;
     audio.pause();
     video.play();
   } else {
+    document.getElementById("slider").classList.remove("video");
+    document.getElementById("slider").classList.add("audio");
     document.getElementById("video").classList.add("hide");
     document.getElementById("audio").classList.remove("hide");
     audio.src = url;

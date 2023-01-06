@@ -61,6 +61,7 @@
 .title h4 {
   text-align: center;
   font-size: 40px;
+  font-weight: 500;
   margin: auto;
 }
 
@@ -76,4 +77,42 @@
 
 #audio {
   margin-bottom: 40px;
+}
+
+#videoTitle {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  z-index: 2;
+  color: white;
+  font-weight: 900;
+}
+
+.slider.video .title {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .title {
+    width: 65%;
+    overflow-x: hidden;
+  }
+
+  .title h4 {
+    font-size: 20px;
+    overflow-wrap: anywhere;
+  }
+
+  .slider.video #videoTitle {
+    font-size: 20px;
+  }
+
+  .slider.audio #videoTitle {
+    display: none;
+  }
+
+  .controls {
+    width: 100%;
+    margin: 0px 20px;
+  }
 }
