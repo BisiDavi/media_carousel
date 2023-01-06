@@ -58,10 +58,6 @@ function assignMedia(media) {
   queryParams.searchParams.set("category", category);
   history.pushState(null, "", queryParams);
 
-  if (COUNT === 1) {
-    audio.play();
-  }
-
   if (type.includes("video")) {
     document.getElementById("audio").classList.add("hide");
     document.getElementById("video").classList.remove("hide");
@@ -86,6 +82,7 @@ async function previousMedia() {
     const dataResult = await data;
     const result = formatData(dataResult.items);
     COUNT -= 1;
+    console.log("COUNT", COUNT);
     const media = result[COUNT];
     assignMedia(media);
   }
@@ -95,6 +92,7 @@ async function nextMedia() {
   const dataResult = await data;
   const result = formatData(dataResult.items);
   COUNT += 1;
+  console.log("COUNT", COUNT);
   const media = result[COUNT];
   assignMedia(media);
 }
