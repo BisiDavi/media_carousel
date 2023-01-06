@@ -6,7 +6,7 @@ const GCS_BASE_URL = "https://www.googleapis.com/storage/v1";
  * parameters to include.
  */
 function make_gcs_url(path, params) {
-  let query_string = "?key=" + GCS_API_KEY;
+  let query_string = "?key=" + "AIzaSyBJqLVXZ1urMse68Dx--rz1cGU8CD_w3Gc";
   if (params != undefined) {
     for (prop in params) {
       query_string += "&" + prop + "=" + params[prop];
@@ -40,7 +40,7 @@ function formatData(data) {
 }
 
 function fetch_data() {
-  const metadata_url = make_gcs_url("/b/" + GCS_BUCKET + "/o/", {
+  const metadata_url = make_gcs_url("/b/" + "media_carousel" + "/o/", {
     alt: "json",
   });
   return $.ajax({
