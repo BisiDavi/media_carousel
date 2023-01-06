@@ -78,7 +78,6 @@ function assignMedia(media) {
 }
 
 const data = fetch_data();
-data.then((response) => console.log("response", response));
 
 let COUNT = 0;
 

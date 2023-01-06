@@ -15,7 +15,6 @@
   justify-content: center;
   margin: auto;
   align-items: flex-end;
-  margin-bottom: 40px;
 }
 
 .controls {
@@ -68,4 +67,8 @@
   display: flex;
   justify-content: center;
   margin: auto;
+}
+
+#audio {
+  margin-bottom: 40px;
 }
