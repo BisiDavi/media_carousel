@@ -92,6 +92,10 @@
   display: none;
 }
 
+.slider.video #videoTitle {
+  font-size: 30px;
+}
+
 @media (max-width: 768px) {
   .title {
     width: 65%;

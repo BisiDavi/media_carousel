@@ -88,7 +88,7 @@ async function previousMedia() {
     const dataResult = await data;
     const result = formatData(dataResult.items);
     COUNT -= 1;
-    console.log("COUNT", COUNT);
+    // console.log("COUNT", COUNT);
     const media = result[COUNT];
     assignMedia(media);
   }
@@ -98,7 +98,7 @@ async function nextMedia() {
   const dataResult = await data;
   const result = formatData(dataResult.items);
   COUNT += 1;
-  console.log("COUNT", COUNT);
+  // console.log("COUNT", COUNT);
   const media = result[COUNT];
   assignMedia(media);
 }
