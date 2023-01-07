@@ -1,6 +1,8 @@
 // used for accessing the GCS JSON API.
 const GCS_BASE_URL = "https://www.googleapis.com/storage/v1";
 let COUNT = 0;
+const BUCKET_ID = "media_carousel";
+const GCS_API_KEY = "AIzaSyBJqLVXZ1urMse68Dx--rz1cGU8CD_w3Gc";
 
 const prevButton = document.getElementById("prev");
 const nextButton = document.getElementById("next");
@@ -10,7 +12,7 @@ const nextButton = document.getElementById("next");
  * parameters to include.
  */
 function make_gcs_url(path, params) {
-  let query_string = "?key=" + "AIzaSyBJqLVXZ1urMse68Dx--rz1cGU8CD_w3Gc";
+  let query_string = "?key=" + GCS_API_KEY;
   if (params != undefined) {
     for (prop in params) {
       query_string += "&" + prop + "=" + params[prop];
@@ -43,7 +45,7 @@ function formatData(data) {
 }
 
 function fetchData() {
-  const metadata_url = make_gcs_url("/b/" + "media_carousel" + "/o/", {
+  const metadata_url = make_gcs_url("/b/" + BUCKET_ID + "/o/", {
     alt: "json",
   });
   return $.ajax({
