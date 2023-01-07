@@ -25,7 +25,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0px 40px;
-  top: 45%;
+  top: 42%;
 }
 
 .controls button {
@@ -58,6 +58,12 @@ button[disabled] {
 
 .audio {
   margin-bottom: 40px;
+}
+
+.slider.audio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
