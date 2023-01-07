@@ -102,7 +102,7 @@ function mediaNavigation(mediaArray, type) {
   const category = searchUrl && splitUrl[0].split("?category=")[1];
   const contentType =
     searchUrl &&
-    // searchUrl.includes("content_type=") &&
+    searchUrl.includes("content_type=") &&
     splitUrl[1].split("content_type=")[1];
   const urlMediaType =
     contentType === "audios" ? "audio" : contentType === "videos" && "video";
