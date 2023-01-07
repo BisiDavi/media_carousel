@@ -73,6 +73,7 @@ function assignMedia(media) {
     document.getElementById("slider").classList.add("audio");
     document.getElementById("video").classList.add("hide");
     document.getElementById("audio").classList.remove("hide");
+    
     audio.src = url;
     audio.play();
     video.pause();
