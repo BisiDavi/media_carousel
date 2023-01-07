@@ -6,7 +6,6 @@ const splitUrl = searchUrl.split("&");
 const categoryType = splitUrl[0].split("?category=")[1];
 const contentType = splitUrl[1].split("content_type=")[1];
 const mediaType = contentType === "audios" ? "audio" : "video";
-console.log("categoryType", categoryType, "contentType", contentType);
 const prevButton = document.getElementById("prev");
 const nextButton = document.getElementById("next");
 
@@ -91,9 +90,13 @@ function assignMedia(media) {
 
 const data = fetchData();
 
-function controlButtonStyle() {
+function controlButtonStyle(maxLength) {
   if (COUNT === 0) {
     prevButton.disabled = true;
+  } else if (COUNT === Number(maxLength - 1)) {
+    nextButton.disabled = true;
+  } else if (COUNT < Number(maxLength - 1)) {
+    nextButton.disabled = false;
   } else if (COUNT > 0) {
     prevButton.disabled = false;
   }
@@ -102,7 +105,6 @@ function controlButtonStyle() {
 function mediaNavigation(mediaArray, type) {
   if (contentType) {
     const media = mediaArray.filter((item) => item.name.includes(mediaType));
-    console.log("media-length", media.length);
     if (type === "next") {
       COUNT += 1;
     } else if (type === "previous") {
@@ -112,6 +114,7 @@ function mediaNavigation(mediaArray, type) {
     }
     const selectedMediaBasedOnType = media[COUNT];
     assignMedia(selectedMediaBasedOnType);
+    controlButtonStyle(media.length);
   } else {
     if (type === "next") {
       COUNT += 1;
@@ -122,9 +125,8 @@ function mediaNavigation(mediaArray, type) {
     }
     const selectedMedia = mediaArray[COUNT];
     assignMedia(selectedMedia);
+    controlButtonStyle(media.length);
   }
-  controlButtonStyle();
-  console.log("COUNT", COUNT);
 }
 
 async function previousMedia() {
