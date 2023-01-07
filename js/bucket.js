@@ -1,12 +1,7 @@
 // used for accessing the GCS JSON API.
 const GCS_BASE_URL = "https://www.googleapis.com/storage/v1";
 let COUNT = 0;
-const searchUrl = window.location.search;
-const splitUrl = searchUrl && searchUrl.split("&");
-const categoryType = searchUrl && splitUrl[0].split("?category=")[1];
-const contentType = searchUrl && splitUrl[1].split("content_type=")[1];
-const mediaType =
-  contentType === "audios" ? "audio" : contentType === "videos" && "video";
+
 const prevButton = document.getElementById("prev");
 const nextButton = document.getElementById("next");
 
@@ -102,8 +97,14 @@ function controlButtonStyle(maxLength) {
 }
 
 function mediaNavigation(mediaArray, type) {
+  const searchUrl = window.location.search;
+  const splitUrl = searchUrl && searchUrl.split("&");
+  const contentType = searchUrl && splitUrl[1].split("content_type=")[1];
+  const urlMediaType =
+    contentType === "audios" ? "audio" : contentType === "videos" && "video";
+
   if (contentType) {
-    const media = mediaArray.filter((item) => item.name.includes(mediaType));
+    const media = mediaArray.filter((item) => item.name.includes(urlMediaType));
     if (type === "next") {
       COUNT += 1;
     } else if (type === "previous") {
