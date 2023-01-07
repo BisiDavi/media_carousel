@@ -156,10 +156,10 @@ async function nextMedia() {
 if (COUNT === 0) {
   data.then((response) => {
     const result = formatData(response.items);
-    const { type, category } = result[0];
-    let queryParams = new URL(location.href);
     const currentSearchUrl = window.location.search;
     if (!currentSearchUrl) {
+      const { type, category } = result[0];
+      let queryParams = new URL(location.href);
       const mediaType = type.includes("audio") ? "audios" : "videos";
       queryParams.searchParams.set("category", category);
       queryParams.searchParams.set("content_type", mediaType);
