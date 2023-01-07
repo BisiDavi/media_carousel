@@ -110,7 +110,6 @@ function mediaNavigation(mediaArray, type) {
   if (contentType) {
     const media = mediaArray.filter((item) => item.name.includes(urlMediaType));
     const mediaByCategory = media.filter((item) => item.category === category);
-    console.log("mediaByCategory", mediaByCategory);
     if (type === "next") {
       COUNT += 1;
     } else if (type === "previous") {
