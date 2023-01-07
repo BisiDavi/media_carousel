@@ -38,7 +38,7 @@ function formatData(data) {
   return dataArray;
 }
 
-function fetch_data() {
+function fetchData() {
   const metadata_url = make_gcs_url("/b/" + "media_carousel" + "/o/", {
     alt: "json",
   });
@@ -52,9 +52,11 @@ function assignMedia(media) {
   const { url, type, category } = media;
   const audio = document.getElementById("audio");
   const video = document.getElementById("video");
+  const mediaType = type.includes("audio") ? "audios" : "videos";
 
   let queryParams = new URL(location.href);
   queryParams.searchParams.set("category", category);
+  queryParams.searchParams.set("content_type", mediaType);
   history.pushState(null, "", queryParams);
 
   if (type.includes("video")) {
@@ -77,7 +79,7 @@ function assignMedia(media) {
   }
 }
 
-const data = fetch_data();
+const data = fetchData();
 
 let COUNT = 0;
 
