@@ -2,10 +2,11 @@
 const GCS_BASE_URL = "https://www.googleapis.com/storage/v1";
 let COUNT = 0;
 const searchUrl = window.location.search;
-const splitUrl = searchUrl.split("&");
-const categoryType = splitUrl[0].split("?category=")[1];
-const contentType = splitUrl[1].split("content_type=")[1];
-const mediaType = contentType === "audios" ? "audio" : "video";
+const splitUrl = searchUrl && searchUrl.split("&");
+const categoryType = searchUrl && splitUrl[0].split("?category=")[1];
+const contentType = searchUrl && splitUrl[1].split("content_type=")[1];
+const mediaType =
+  contentType === "audios" ? "audio" : contentType === "videos" && "video";
 const prevButton = document.getElementById("prev");
 const nextButton = document.getElementById("next");
 
@@ -123,7 +124,7 @@ function mediaNavigation(mediaArray, type) {
     }
     const selectedMedia = mediaArray[COUNT];
     assignMedia(selectedMedia);
-    controlButtonStyle(media.length);
+    controlButtonStyle(mediaArray.length);
   }
 }
 
