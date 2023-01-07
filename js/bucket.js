@@ -88,8 +88,6 @@ function assignMedia(media) {
   }
 }
 
-const data = fetchData();
-
 function controlButtonStyle(maxLength) {
   if (COUNT === 0) {
     prevButton.disabled = true;
@@ -128,6 +126,8 @@ function mediaNavigation(mediaArray, type) {
     controlButtonStyle(media.length);
   }
 }
+
+const data = fetchData();
 
 async function previousMedia() {
   prevButton.disabled = false;
