@@ -1,5 +1,12 @@
 // used for accessing the GCS JSON API.
 const GCS_BASE_URL = "https://www.googleapis.com/storage/v1";
+let COUNT = 0;
+const searchUrl = window.location.search;
+const splitUrl = searchUrl.split("&");
+const categoryType = splitUrl[0].split("?category=")[1];
+const contentType = splitUrl[1].split("content_type=")[1];
+const mediaType = contentType === "audios" ? "audio" : "video";
+console.log("categoryType", categoryType, "contentType", contentType);
 
 /**
  * Forms a URL to the GCS JSON API given a path and an optional list of query
@@ -73,7 +80,7 @@ function assignMedia(media) {
     document.getElementById("slider").classList.add("audio");
     document.getElementById("video").classList.add("hide");
     document.getElementById("audio").classList.remove("hide");
-    
+
     audio.src = url;
     audio.play();
     video.pause();
@@ -82,30 +89,48 @@ function assignMedia(media) {
 
 const data = fetchData();
 
-let COUNT = 0;
+function mediaNavigation(mediaArray, type) {
+  if (contentType) {
+    const media = mediaArray.filter((item) => item.name.includes(mediaType));
+    if (type === "next") {
+      COUNT += 1;
+    } else if (type === "previous") {
+      COUNT -= 1;
+    } else {
+      COUNT = 0;
+    }
+    const selectedMediaBasedOnType = media[COUNT];
+    assignMedia(selectedMediaBasedOnType);
+  } else {
+    if (type === "next") {
+      COUNT += 1;
+    } else if (type === "previous") {
+      COUNT -= 1;
+    } else {
+      COUNT = 0;
+    }
+    const selectedMedia = mediaArray[COUNT];
+    assignMedia(selectedMedia);
+  }
+}
 
 async function previousMedia() {
   if (COUNT > 0) {
     const dataResult = await data;
     const result = formatData(dataResult.items);
-    COUNT -= 1;
-    const media = result[COUNT];
-    assignMedia(media);
+    mediaNavigation(result, "previous");
   }
 }
 
 async function nextMedia() {
   const dataResult = await data;
   const result = formatData(dataResult.items);
-  COUNT += 1;
-  const media = result[COUNT];
-  assignMedia(media);
+  mediaNavigation(result, "next");
 }
 
 if (COUNT === 0) {
   data.then((response) => {
     const result = formatData(response.items);
-    const media = result[COUNT];
-    assignMedia(media);
+    mediaNavigation(result);
   });
 }
