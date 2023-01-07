@@ -49,11 +49,10 @@ function fetch_data() {
 }
 
 function assignMedia(media) {
-  const { url, type, name, category } = media;
+  const { url, type, category } = media;
   const audio = document.getElementById("audio");
   const video = document.getElementById("video");
 
-  document.getElementById("title").innerHTML = name;
   let queryParams = new URL(location.href);
   queryParams.searchParams.set("category", category);
   history.pushState(null, "", queryParams);
@@ -63,7 +62,6 @@ function assignMedia(media) {
     document.getElementById("slider").classList.remove("audio");
     document.getElementById("audio").classList.add("hide");
     document.getElementById("video").classList.remove("hide");
-    document.getElementById("videoTitle").innerHTML = name;
 
     video.src = url;
     audio.pause();
@@ -88,7 +86,6 @@ async function previousMedia() {
     const dataResult = await data;
     const result = formatData(dataResult.items);
     COUNT -= 1;
-    // console.log("COUNT", COUNT);
     const media = result[COUNT];
     assignMedia(media);
   }
@@ -98,7 +95,6 @@ async function nextMedia() {
   const dataResult = await data;
   const result = formatData(dataResult.items);
   COUNT += 1;
-  // console.log("COUNT", COUNT);
   const media = result[COUNT];
   assignMedia(media);
 }
