@@ -99,12 +99,17 @@ function controlButtonStyle(maxLength) {
 function mediaNavigation(mediaArray, type) {
   const searchUrl = window.location.search;
   const splitUrl = searchUrl && searchUrl.split("&");
-  const contentType = searchUrl && splitUrl[1].split("content_type=")[1];
+  const category = searchUrl && splitUrl[0].split("?category=")[1];
+  const contentType =
+    searchUrl &&
+    searchUrl.includes("content_type=") &&
+    splitUrl[1].split("content_type=")[1];
   const urlMediaType =
     contentType === "audios" ? "audio" : contentType === "videos" && "video";
 
   if (contentType) {
     const media = mediaArray.filter((item) => item.name.includes(urlMediaType));
+    const mediaByCategory = media.filter((item) => item.category === category);
     if (type === "next") {
       COUNT += 1;
     } else if (type === "previous") {
@@ -112,10 +117,13 @@ function mediaNavigation(mediaArray, type) {
     } else {
       COUNT = 0;
     }
-    const selectedMediaBasedOnType = media[COUNT];
+    const selectedMediaBasedOnType = mediaByCategory[COUNT];
     assignMedia(selectedMediaBasedOnType);
-    controlButtonStyle(media.length);
+    controlButtonStyle(mediaByCategory.length);
   } else {
+    const mediaByCategory = mediaArray.filter(
+      (item) => item.category === category
+    );
     if (type === "next") {
       COUNT += 1;
     } else if (type === "previous") {
@@ -123,9 +131,9 @@ function mediaNavigation(mediaArray, type) {
     } else {
       COUNT = 0;
     }
-    const selectedMedia = mediaArray[COUNT];
+    const selectedMedia = mediaByCategory[COUNT];
     assignMedia(selectedMedia);
-    controlButtonStyle(mediaArray.length);
+    controlButtonStyle(mediaByCategory.length);
   }
 }
 
