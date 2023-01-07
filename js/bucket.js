@@ -102,7 +102,7 @@ function mediaNavigation(mediaArray, type) {
   const category = searchUrl && splitUrl[0].split("?category=")[1];
   const contentType =
     searchUrl &&
-    searchUrl.includes("content_type=") &&
+    // searchUrl.includes("content_type=") &&
     splitUrl[1].split("content_type=")[1];
   const urlMediaType =
     contentType === "audios" ? "audio" : contentType === "videos" && "video";
@@ -110,6 +110,7 @@ function mediaNavigation(mediaArray, type) {
   if (contentType) {
     const media = mediaArray.filter((item) => item.name.includes(urlMediaType));
     const mediaByCategory = media.filter((item) => item.category === category);
+    console.log("mediaByCategory", mediaByCategory);
     if (type === "next") {
       COUNT += 1;
     } else if (type === "previous") {
@@ -156,6 +157,15 @@ async function nextMedia() {
 if (COUNT === 0) {
   data.then((response) => {
     const result = formatData(response.items);
+    const { type, category } = result[0];
+    let queryParams = new URL(location.href);
+    const currentSearchUrl = window.location.search;
+    if (!currentSearchUrl) {
+      const mediaType = type.includes("audio") ? "audios" : "videos";
+      queryParams.searchParams.set("category", category);
+      queryParams.searchParams.set("content_type", mediaType);
+      history.pushState(null, "", queryParams);
+    }
     mediaNavigation(result);
   });
 }
