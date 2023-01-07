@@ -7,6 +7,8 @@ const categoryType = splitUrl[0].split("?category=")[1];
 const contentType = splitUrl[1].split("content_type=")[1];
 const mediaType = contentType === "audios" ? "audio" : "video";
 console.log("categoryType", categoryType, "contentType", contentType);
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
 
 /**
  * Forms a URL to the GCS JSON API given a path and an optional list of query
@@ -89,9 +91,18 @@ function assignMedia(media) {
 
 const data = fetchData();
 
+function controlButtonStyle() {
+  if (COUNT === 0) {
+    prevButton.disabled = true;
+  } else if (COUNT > 0) {
+    prevButton.disabled = false;
+  }
+}
+
 function mediaNavigation(mediaArray, type) {
   if (contentType) {
     const media = mediaArray.filter((item) => item.name.includes(mediaType));
+    console.log("media-length", media.length);
     if (type === "next") {
       COUNT += 1;
     } else if (type === "previous") {
@@ -112,17 +123,19 @@ function mediaNavigation(mediaArray, type) {
     const selectedMedia = mediaArray[COUNT];
     assignMedia(selectedMedia);
   }
+  controlButtonStyle();
+  console.log("COUNT", COUNT);
 }
 
 async function previousMedia() {
-  if (COUNT > 0) {
-    const dataResult = await data;
-    const result = formatData(dataResult.items);
-    mediaNavigation(result, "previous");
-  }
+  prevButton.disabled = false;
+  const dataResult = await data;
+  const result = formatData(dataResult.items);
+  mediaNavigation(result, "previous");
 }
 
 async function nextMedia() {
+  prevButton.disabled = false;
   const dataResult = await data;
   const result = formatData(dataResult.items);
   mediaNavigation(result, "next");
